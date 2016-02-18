@@ -1,0 +1,14 @@
+!.gitkeep
+
+# Project files
+*.ico
+!cmdFileUtility.ico
+#/RESULT/*
+
+# Project folders
+/lib/
+/backup/
+!/RESULT/
+
+# BAT
+!cmdFileUtility.*.bat
