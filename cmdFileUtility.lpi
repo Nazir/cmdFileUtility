@@ -49,17 +49,16 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <TopLine Value="103"/>
-        <CursorPos X="74" Y="116"/>
+        <CursorPos X="42" Y="117"/>
         <UsageCount Value="106"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="cmdFileUtility.bat"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="3"/>
         <UsageCount Value="106"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Bat"/>
       </Unit1>
       <Unit2>
