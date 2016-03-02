@@ -1,0 +1,9 @@
+# Comment 1
+Project1=Lazarus
+# Comment 2
+OS=operating system
+# Comment 3
+source code \r\n=source code 
+
+# Comment 4
+NULL=No replaced

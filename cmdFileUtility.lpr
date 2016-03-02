@@ -2,17 +2,21 @@ program cmdFileUtility;
 
 {$mode objfpc}{$H+}
 
-{*****************************************************************}
-{                                                                 }
-{  Проект cmdFileUtility (Консольная утилит работы с файлами)     }
-{                                                                 }
-{  Copyright: Nazir © 2002-2016                                   }
-{  Development: Nazir K. Khusnutdinov (aka Wild Pointer)          }
-{  Разработчик: Хуснутдинов Назир Каримович  (Wild Pointer)       }
-{  Create: 02.08.2012                                             }
-{  Modify: 09.08.2012, 08.06.2014                                 }
-{                                                                 }
-{*****************************************************************}
+{******************************************************************************}
+{                                                                              }
+{  Project cmdFileUtility                                                      }
+{  Проект cmdFileUtility (Консольная утилита работы с файлами)                 }
+{                                                                              }
+{  Copyright: Nazir © 2002-2016                                                }
+{  Development: Nazir K. Khusnutdinov (aka Naziron or Wild Pointer)            }
+{  Разработчик: Хуснутдинов Назир Каримович  (Naziron or Wild Pointer)        }
+{  Email: naziron@gmail.com                                                    }
+{  Git: https://github.com/Nazir                                               }
+{                                                                              }
+{  Create: 02.08.2012                                                          }
+{  Modify: 09.08.2012, 08.06.2014, 02.03.2016                                  }
+{                                                                              }
+{******************************************************************************}
 
 uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
@@ -20,7 +24,7 @@ uses
   {$ENDIF}{$ENDIF}
   Classes, SysUtils, CustApp
   { you can add units after this }
-  , codepageconvertor;
+  , Utils;
 
 type
 
@@ -30,17 +34,16 @@ type
   protected
     procedure DoRun; override;
   public
+    bSilentMode: Boolean;
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
+    procedure WriteLine(AStr: String = '');
     procedure WriteHelp; virtual;
     procedure WriteAbout; virtual;
     procedure WriteError(AText: string; ATerminate: Boolean = True);
     function MergeFileStream( inFiles: TStringList; outFileName: string): boolean;
     function FindLines(inpFileName, outFileName: string; AFindList: TStringList): boolean;
-    function CodePageConvertor(inpFileName, outFileName: string;
-      ACodePage: TStringList): boolean;
-    function ExtractFileNameEx( fName: string ): string;
-    function GetSizeAllFiles( var x: array of string ): longint;
+    function Replace(inpFileName, outFileName: string; AReplaceList: TStringList): boolean;
   end;
 
 { TcmdFileUtility }
@@ -59,12 +62,14 @@ var
   sTemp: string;
   //iTemp: Integer;
 begin
+  WriteLine();
   // quick check parameters
-  ErrorMsg := CheckOptions('hcios', ['help', 'command', 'input', 'output', 'settings']);
+  ErrorMsg := CheckOptions('hxcios', ['help', 'silent', 'command', 'input', 'output', 'settings']);
   if ErrorMsg <> '' then
   begin
     ShowException(Exception.Create(ErrorMsg));
     WriteHelp;
+    WriteAbout;
     WriteLn('Press any key to exit!');
     ReadLn();
     Terminate;
@@ -77,7 +82,6 @@ begin
   bSettingsIsString := False;
   bSettingsFileList := False;
 
-
   // parse parameters
   // Help
   if HasOption('h', 'help') then
@@ -86,6 +90,8 @@ begin
     Terminate;
     Exit;
   end;
+  // Silent
+  bSilentMode := HasOption('x', 'silent');
   // Command
   if HasOption('c', 'command') then
     optCommand := GetOptionValue('c', 'command');
@@ -99,39 +105,55 @@ begin
   if HasOption('s', 'settings') then
     optSettings := GetOptionValue('s', 'settings');
 
-  // Command = merge ===========================================================
-  // Example: -c merge -s FilesList.txt -o Output\Result.txt
-  if optCommand = 'merge' then
-  begin
-    WriteLn('Command: ', optCommand);
-    bSettingsFileList := True;
-    bInputIsPath := False;
-    bOutputIsPath := False;
+  case optCommand of
+    // Command = merge =========================================================
+    // Example: -c merge -s FilesList.txt -o Output\Result.txt
+    'merge':
+    begin
+      WriteLine('Command: ' + optCommand);
+      bSettingsFileList := True;
+      bInputIsPath := False;
+      bOutputIsPath := False;
+    end;
+    // Command = FindLines =====================================================
+    // Example:  -c FindLines -i FindLinesInput.txt -o RESULT\cmdFileUtility.FindLines.Result.txt -s FindLines.txt
+    'FindLines':
+    begin
+      WriteLine('Command: ' + optCommand);
+      bSettingsFileList := True;
+      bInputIsPath := False;
+      bSettingsIsString := False;
+      bOutputIsPath := False;
+    end;
+    // Command = replace =======================================================
+    // Example:  -c replace -i ReplaceInput.txt -o RESULT\cmdFileUtility.Replace.Result.txt -s Replace.txt
+    'replace':
+    begin
+      WriteLine('Command: ' + optCommand);
+      bSettingsFileList := True;
+      bInputIsPath := False;
+      bSettingsIsString := False;
+      bOutputIsPath := False;
+    end;
+    // Command = CodePageConvertor =============================================
+    // Example:  -c CodePageConvertor -i CodePageConvertorInput.txt -o RESULT\cmdFileUtility.CodePageConvertor.Result.txt -s CodePageConvertor.txt
+    // cpALT, cpISO, cpKOI, cpMAC, cpWIN
+    'CodePageConvertor':
+    begin
+      WriteLine('Command: ' + optCommand);
+      bSettingsFileList := True;
+      bInputIsPath := False;
+      bSettingsIsString := False;
+      bOutputIsPath := False;
+    end;
+    else
+      WriteHelp;
+      WriteLn('');
+      Write('Press any key to exit!');
+      ReadLn();
+      // stop program loop
+      Terminate;
   end;
-
-  // Command = FindLines =======================================================
-  // Example:  -c FindLines -i FindLinesInput.txt -o RESULT\cmdFileUtility.Result.txt -s FindLines.txt
-  if optCommand = 'FindLines' then
-  begin
-    WriteLn('Command: ', optCommand);
-    bSettingsFileList := True;
-    bInputIsPath := False;
-    bSettingsIsString := False;
-    bOutputIsPath := False;
-  end;
-
-  // Command = CodePageConvertor =======================================================
-  // Example:  -c CodePageConvertor -i CodePageConvertorInput.txt -o RESULT\CodePageConvertorOutput.txt -s CodePageConvertor.txt
-  //cpALT,cpISO,cpKOI,cpMAC,cpWIN
-  if optCommand = 'CodePageConvertor' then
-  begin
-    WriteLn('Command: ', optCommand);
-    bSettingsFileList := True;
-    bInputIsPath := False;
-    bSettingsIsString := False;
-    bOutputIsPath := False;
-  end;
-
 
   // Input check ===============================================================
   if not (optInput = EmptyStr) then
@@ -145,7 +167,7 @@ begin
   else
   begin
     if FileExists(optInput) then
-      WriteLn('Input file is "', optInput, '"')
+      WriteLine('Input file is "' + optInput + '"')
     else
       WriteError('Error: Input file "' + optInput + '" is not exists!');
   end;
@@ -166,7 +188,7 @@ begin
       optOutput := optInput + '.output'; // Default output file extension
 
     if FileExists(optOutput) then
-      WriteLn('Output file is "', optOutput, '"');
+      WriteLine('Output file is "' + optOutput + '"');
   end;
 
   // Settings check ==============================================================
@@ -174,12 +196,12 @@ begin
   if not bSettingsIsString then
   begin
     if FileExists(optSettings) then
-      WriteLn('Settings file is "', optSettings, '"')
+      WriteLine('Settings file is "' + optSettings + '"')
     else
       WriteError('Error: Settings file "' + optSettings + '" is not exists!');
   end;
   if bSettingsFileList then
-    WriteLn('Settings file is list.');
+    WriteLine('Settings file is list.');
 
   // Settings file is list ========================================================
   if bSettingsFileList then
@@ -189,15 +211,15 @@ begin
     slTemp := TStringList.Create;
     slTemp.LoadFromFile(optSettings);
 
-    WriteLn('Settings:');
+    WriteLine('Settings:');
     for iCounter := 0 to slTemp.Count - 1 do
     begin
-      sTemp := Trim(slTemp.Strings[iCounter]);
+      sTemp := slTemp.Strings[iCounter];
       if (sTemp <> EmptyStr) and (LeftStr(sTemp, 1) <> '#') then
       begin
-        Write(IntToStr(iCounter + 1), '. "', sTemp, '"');
+        WriteLine(IntToStr(iCounter + 1) + '. "' + sTemp + '"');
+        WriteLine();
         slSettings.Append(sTemp);
-        WriteLn();
       end;
     end;
 
@@ -214,24 +236,30 @@ begin
           optOutput := sTemp;
         WriteLn();
       end;
-      WriteLn('Result:');
-      // =========================
+      WriteLine('Result:');
+      // =============================
       if optCommand = 'merge' then
       begin
         if MergeFileStream(slSettings, optOutput) then
-          WriteLn('Merge file is "', optOutput, '"');
+          WriteLine('Merge file is "' + optOutput + '"');
       end;
       // =============================
       if optCommand = 'FindLines' then
       begin
         if FindLines(optInput, optOutput, slSettings) then
-          WriteLn('Result file is "', optOutput, '"');
+          WriteLine('Result file is "' + optOutput + '"');
+      end;
+      // =============================
+      if optCommand = 'replace' then
+      begin
+        if Replace(optInput, optOutput, slSettings) then
+          WriteLine('Result file is "' + optOutput + '"');
       end;
       // =============================
       if optCommand = 'CodePageConvertor' then
       begin
         if CodePageConvertor(optInput, optOutput, slSettings) then
-          WriteLn('Result file is "', optOutput, '"');
+          WriteLine('Result file is "' + optOutput + '"');
       end;
     end;
 
@@ -239,17 +267,8 @@ begin
   end;
 
 //  ============================================================================
-  WriteLn('_________________________');
-
-
-  if optCommand = EmptyStr then
-  begin
-    WriteHelp;
-    ReadLn();
-  end;
-
-  WriteAbout;
-
+  if not bSilentMode then
+    WriteAbout;
   WriteLn('');
   Write('Press any key to exit!');
 
@@ -268,36 +287,45 @@ begin
   inherited Destroy;
 end;
 
+procedure TcmdFileUtility.WriteLine(AStr: String = '');
+begin
+  if not bSilentMode then
+    WriteLn(AStr);
+end;
+
 procedure TcmdFileUtility.WriteHelp;
 begin
   { add your help code here }
   WriteLn('Usage: ', ExtractFileName(ExeName), ' [Option] [Option, [Option]...]');
   WriteLn('  Option:');
-  WriteLn('    -h, help     - Help (show this)');
-  WriteLn('    -c, command  - Command (see below)');
-  WriteLn('    -i, input    - Input file or directory');
-  WriteLn('    -o, output   - Output file or directory');
-  WriteLn('    -s, settings - Settings file or string');
+  WriteLn('    -h or --help     - Help (show this)');
+  WriteLn('    -x or --silent   - Silent mode');
+  WriteLn('    -c or --command  - Command (see below)');
+  WriteLn('    -i or --input    - Input file or directory');
+  WriteLn('    -o or --output   - Output file or directory');
+  WriteLn('    -s or --settings - Settings file or string');
   WriteLn('  Command:');
   WriteLn('    1. merge - Merge files in list. Use option -i for file containing a list.');
   WriteLn('    2. FindLines - Find lines in input file and copy them in output file. Use option -s for file containing a list find string.');
-  WriteLn('    3. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing  cpALT, cpISO, cpKOI, cpMAC, cpWIN.');
+  WriteLn('    3. replace - Find and replace strings in input file. Use option -s for file containing a list find string=replace string.');
+  WriteLn('    4. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing  cpALT, cpISO, cpKOI, cpMAC, cpWIN.');
   WriteLn('');
 //  WriteLn('Example:');
 //  WriteLn(ExtractFileName(ExeName), ' -c merge -s FilesList.txt -o RESULT\');
 //
 
-  WriteLn('');
+  WriteLn();
   WriteAbout;
 end;
 
 procedure TcmdFileUtility.WriteAbout;
 begin
   //CharToOem
-  WriteLn('Help: ', ExtractFileName(ExeName),' -h');
-  WriteLn;
+  WriteLn('___________________________');
+  WriteLn('Help: ', ExtractFileName(ExeName), ' -h');
+  WriteLn();
   WriteLn('About:');
-  WriteLn('cmdFileUtility v0.1 alpha (24.09.2014)');
+  WriteLn('cmdFileUtility v0.2 alpha (02.03.2016)');
   WriteLn('Copyright: Nazir (c) 2002-2016');
   WriteLn('Programming:');
   WriteLn('Nazir K. Khusnutdinov aka Wild Pointer');
@@ -319,14 +347,13 @@ end;
 
 
 (* Функция для склейки файла *)
-// http://decoding.narod.ru/practic/cutfile/cutfile.html
-function TcmdFileUtility.MergeFileStream( inFiles: TStringList; outFileName: string): boolean;
+function TcmdFileUtility.MergeFileStream(inFiles: TStringList; outFileName: string): Boolean;
 var
   inStream: TFileStream;  // Входной файловый поток
   outStream: TFileStream; // Выходной файловый поток
 //  outFileName: string;    // Шаблон выходного имени файла
   recFirstFile: Boolean;  // Признак записи первого файла
-  i: integer;             // Цикловая переменная
+  i: Integer;             // Цикловая переменная
 
 begin
    // Инициализируем переменные
@@ -408,87 +435,41 @@ begin
   Result := True;
 end;
 
-function TcmdFileUtility.CodePageConvertor(inpFileName, outFileName: string;
-  ACodePage: TStringList): boolean;
+function TcmdFileUtility.Replace(inpFileName, outFileName: string;
+  AReplaceList: TStringList): boolean;
 var
-  Convertor: TCodePageConvertor;
   slInput, slOutput: TStringList;
   iCounter: Integer;
+  sFind, sReplace : String;
 begin
-  Result := False;
 
+
+  Result := False;
   if not FileExists(inpFileName) then
    Exit;
-
-  //  cpALT,cpISO,cpKOI,cpMAC,cpWIN
-  Convertor := TCodePageConvertor.Create(nil);
-  if ACodePage.Strings[0] = 'cpALT' then
-    Convertor.InputCodePage := cpALT;
-  if ACodePage.Strings[0] = 'cpISO' then
-    Convertor.InputCodePage := cpISO;
-  if ACodePage.Strings[0] = 'cpKOI' then
-    Convertor.InputCodePage := cpKOI;
-  if ACodePage.Strings[0] = 'cpMAC' then
-    Convertor.InputCodePage := cpMAC;
-  if ACodePage.Strings[0] = 'cpWIN' then
-    Convertor.InputCodePage := cpWIN;
-
-  if ACodePage.Strings[1] = 'cpALT' then
-    Convertor.OutputCodePage := cpALT;
-  if ACodePage.Strings[1] = 'cpISO' then
-    Convertor.OutputCodePage := cpISO;
-  if ACodePage.Strings[1] = 'cpKOI' then
-    Convertor.OutputCodePage := cpKOI;
-  if ACodePage.Strings[1] = 'cpMAC' then
-    Convertor.OutputCodePage := cpMAC;
-  if ACodePage.Strings[1] = 'cpWIN' then
-    Convertor.OutputCodePage := cpWIN;
 
   slInput := TStringList.Create;
   slInput.LoadFromFile(inpFileName);
   slOutput := TStringList.Create;
+  slOutput.Text := slInput.Text;
 
-  for iCounter := 0 to slInput.Count - 1 do
+  for iCounter := 0 to AReplaceList.Count - 1 do
   begin
-    Convertor.InputString := slInput.Strings[iCounter];
-    slOutput.Append(Convertor.OutputString);
+    sFind := AReplaceList.Strings[iCounter];
+    sFind := LeftStr(sFind, Pos('=', sFind) - 1);
+    sFind := ReplaceExp(sFind);
+    sReplace := AReplaceList.Strings[iCounter];
+    sReplace := Copy(sReplace, Pos('=', sReplace) + 1, Length(sReplace));
+    sReplace := ReplaceExp(sReplace);
+    //sReplace := TrimRight(sReplace);
+    slOutput.Text := StringReplace(slOutput.Text, sFind, sReplace, [rfIgnoreCase, rfReplaceAll]);
   end;
 
   slInput.Free;
   slOutput.SaveToFile(outFileName);
   slOutput.Free;
-  Convertor.Free;
+
   Result := True;
-end;
-
-// В отличие от стандартной функции ExtractFileName, ExtractFileNameEx (ее код приведен ниже) возвращает имя файла без расширения. Если необходимо показать ход выполнения операции склеивания файлов в ProgressBar1, то функция GetSizeAllFiles (она так же приведена ниже) позволит определить размер конечного файла, а, следовательно, и ProgressBar1.Max.
-
-(* Функция возвращает имя файла без расширения *)
-function TcmdFileUtility.ExtractFileNameEx( fName: string ): string;
-begin
-   if FileExists( fName ) then
-   begin
-      Result := ExtractFileName( fName );
-      Delete( Result, LastDelimiter( '.', Result ), Length( Result ) );
-   end
-   else
-      Result := '';
-end;
-
-(* Функция находит общий размер склеиваемых файлов *)
-function TcmdFileUtility.GetSizeAllFiles( var x: array of string ): longint;
-var
-  i: integer;
-  sr: TSearchRec;
-begin
-   Result := 0;
-   for i := Low( x ) to High( x ) do
-      if FileExists( x[i] ) then
-      begin
-         FindFirst( x[i], faAnyFile, sr );
-         Result := Result + sr.Size;
-         FindClose( sr );
-      end;
 end;
 
 var
@@ -498,6 +479,7 @@ var
 
 begin
   Application := TcmdFileUtility.Create(nil);
+  Application.Title := ExtractFileName(Application.ExeName);
   Application.Run;
   Application.Free;
 end.

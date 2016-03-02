@@ -1,0 +1,58 @@
+
+#
+!.gitkeep
+/.idea
+/.DS_Store
+/.git/
+
+# 
+*.exe
+*.dll
+*.bat
+
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.obj
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+
+#Ignore files build by Lazarus & Free Pascal
+*.~*
+*.compiled
+*.dbg
+*.bak
+*.lpu
+*.ppu
+*.o
+*.or
+
+# Other
+*.tar
+*.tar.*
+*.7z
+*.zip
+*.log
+*.pdf
+*.xls
+*.xlsx
+*.doc
+*.docx
+
+# Folders
+/tmp

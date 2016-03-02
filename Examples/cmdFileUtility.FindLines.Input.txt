@@ -1,0 +1,10 @@
+What is Lazarus?
+
+Lazarus is a cross-platform integrated development environment (IDE) 
+that lets you create visual (GUI) and non-visual Object Pascal programs, 
+and uses the Free Pascal compiler to generate your executable. 
+
+Its aim is write once, compile anywhere: 
+you should be able to just recompile your program source code 
+with Lazarus running on another operating system (or a cross compiler) 
+and get a program that runs on that operating system.
