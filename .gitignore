@@ -8,6 +8,9 @@
 # Project folders
 /lib/
 /backup/
+/Examples/RESULT/*
+!/Examples/RESULT/.gitkeep
+
 
 # BAT
 !cmdFileUtility.*.bat
