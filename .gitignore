@@ -14,3 +14,15 @@
 
 # BAT
 !cmdFileUtility.*.bat
+
+*.exe
+*.dbg
+*.compiled
+
+*.bak
+*.~*
+
+*.lpu
+*.ppu
+*.o
+*.or
