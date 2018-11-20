@@ -13,6 +13,7 @@
 
 
 # BAT
+*.bat
 !cmdFileUtility.*.bat
 
 *.exe

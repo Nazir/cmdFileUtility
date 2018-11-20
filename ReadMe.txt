@@ -1,10 +1,10 @@
 ﻿About:
-cmdFileUtility v0.2 - Консольная утилита работы с файлами для Windows
-Copyright: Nazir © 2002-2016
+cmdFileUtility v0.3 - Консольная утилита работы с файлами для Windows
+Copyright: Nazir © 2002-2018
 Programming:
 Khusnutdinov Nazir K. aka Naziron or Wild Pointer
-Email: Nazir@ovvio.pro
-WEB: http://Nazir.ovvio.pro
+Email: Nazir@Nazir.pro
+WEB: http://Nazir.pro
 Email: Naziron@gmail.com
 Git: https://github.com/Nazir
 ___________________

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="9"/>
+    <Version Value="10"/>
     <PathDelim Value="\"/>
     <General>
       <Flags>
@@ -21,13 +21,12 @@
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
-      <MajorVersionNr Value="2016"/>
-      <MinorVersionNr Value="3"/>
-      <RevisionNr Value="2"/>
+      <MajorVersionNr Value="2018"/>
+      <MinorVersionNr Value="11"/>
+      <RevisionNr Value="20"/>
       <BuildNr Value="1"/>
       <Language Value="0419"/>
-      <Attributes pvaPrivateBuild="True"/>
-      <StringTable Comments="http://Nazir.ovvio.pro" CompanyName="Ovvio Systems" InternalName="cmdFileUtility.exe" LegalCopyright="Nazir © 2002-2016" OriginalFilename="cmdFileUtility.exe" ProductName="cmdFileUtility" ProductVersion="0.2 alpha"/>
+      <StringTable Comments="http://Nazir.pro" InternalName="cmdFileUtility.exe" LegalCopyright="Nazir © 2002-2018" OriginalFilename="cmdFileUtility.exe" ProductName="cmdFileUtility" ProductVersion="0.3 alpha"/>
     </VersionInfo>
     <BuildModes Count="1" Active="Default">
       <Item1 Name="Default" Default="True"/>
@@ -48,14 +47,13 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="21">
+    <Units Count="24">
       <Unit0>
         <Filename Value="cmdFileUtility.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="24"/>
-        <CursorPos X="25" Y="42"/>
-        <UsageCount Value="118"/>
+        <TopLine Value="105"/>
+        <CursorPos X="5" Y="449"/>
+        <UsageCount Value="119"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -63,7 +61,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="3"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="119"/>
         <DefaultSyntaxHighlighter Value="Bat"/>
       </Unit1>
       <Unit2>
@@ -78,7 +76,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="2"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="119"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit3>
       <Unit4>
@@ -90,9 +88,10 @@
       <Unit5>
         <Filename Value="ReadMe.txt"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="42" Y="22"/>
-        <UsageCount Value="115"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="20" Y="3"/>
+        <UsageCount Value="116"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit5>
       <Unit6>
@@ -149,7 +148,7 @@
         <Filename Value="codepageconvertor.pas"/>
         <UnitName Value="CodePageConvertor"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="10"/>
       </Unit14>
       <Unit15>
         <Filename Value="F:\pf\lazarus\fpc\3.0.0\source\rtl\objpas\sysutils\sysstrh.inc"/>
@@ -171,14 +170,16 @@
         <UnitName Value="UtilsUnit"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="10"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="28"/>
       </Unit17>
       <Unit18>
         <Filename Value="utils.pas"/>
         <UnitName Value="Utils"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="44" Y="97"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="77"/>
+        <CursorPos X="37" Y="105"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit18>
       <Unit19>
@@ -197,125 +198,144 @@
         <CursorPos X="6" Y="295"/>
         <UsageCount Value="10"/>
       </Unit20>
+      <Unit21>
+        <Filename Value="cmdFileUtility.lpi"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="22"/>
+        <CursorPos X="48" Y="30"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\NAZIR\pf\Lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysstrh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="9"/>
+        <CursorPos X="4" Y="28"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\src\cmdFileUtility\backup\cmdFileUtility.lpr"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit23>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="95" TopLine="78"/>
+        <Caret Line="89" Column="14" TopLine="75"/>
       </Position1>
       <Position2>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="238" Column="16" TopLine="211"/>
+        <Caret Line="150" Column="16" TopLine="133"/>
       </Position2>
       <Position3>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="190" Column="37" TopLine="172"/>
+        <Caret Line="297" Column="36" TopLine="288"/>
       </Position3>
       <Position4>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="198" Column="52" TopLine="181"/>
+        <Caret Line="343" Column="12" TopLine="319"/>
       </Position4>
       <Position5>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="215" Column="45" TopLine="201"/>
+        <Caret Line="42" Column="25" TopLine="23"/>
       </Position5>
       <Position6>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="13" Column="37"/>
+        <Caret Line="72" Column="15" TopLine="42"/>
       </Position6>
       <Position7>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="160" Column="26" TopLine="152"/>
+        <Caret Line="266" Column="26" TopLine="248"/>
       </Position7>
       <Position8>
         <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="271" Column="15" TopLine="248"/>
       </Position8>
       <Position9>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="169" Column="31" TopLine="149"/>
+        <Caret Line="318" Column="13" TopLine="288"/>
       </Position9>
       <Position10>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="190" Column="32" TopLine="161"/>
+        <Caret Line="321" Column="37" TopLine="306"/>
       </Position10>
       <Position11>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="198" Column="34" TopLine="169"/>
+        <Caret Line="10" Column="33"/>
       </Position11>
       <Position12>
-        <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="296" Column="36" TopLine="287"/>
+        <Filename Value="utils.pas"/>
+        <Caret Line="110" TopLine="73"/>
       </Position12>
       <Position13>
-        <Filename Value="cmdFileUtility.lpr"/>
+        <Filename Value="utils.pas"/>
+        <Caret Line="109" Column="36" TopLine="75"/>
       </Position13>
       <Position14>
-        <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="41" Column="24" TopLine="11"/>
+        <Filename Value="utils.pas"/>
+        <Caret Line="9" Column="3"/>
       </Position14>
       <Position15>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="89" Column="14" TopLine="83"/>
+        <Caret Line="453" Column="20" TopLine="443"/>
       </Position15>
       <Position16>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="150" Column="16" TopLine="121"/>
+        <Caret Line="458" Column="11" TopLine="443"/>
       </Position16>
       <Position17>
         <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="466" Column="97" TopLine="444"/>
       </Position17>
       <Position18>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="41" Column="24" TopLine="11"/>
+        <Caret Line="466" Column="97" TopLine="444"/>
       </Position18>
       <Position19>
-        <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="70" Column="9" TopLine="54"/>
+        <Filename Value="utils.pas"/>
+        <Caret Line="15" Column="10"/>
       </Position19>
       <Position20>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="71" Column="14" TopLine="69"/>
+        <Caret Line="460" TopLine="191"/>
       </Position20>
       <Position21>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="89" Column="14" TopLine="75"/>
+        <Caret Line="437" Column="33" TopLine="433"/>
       </Position21>
       <Position22>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="150" Column="16" TopLine="133"/>
+        <Caret Line="46" Column="14" TopLine="27"/>
       </Position22>
       <Position23>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="297" Column="36" TopLine="288"/>
+        <Caret Line="444" Column="3" TopLine="437"/>
       </Position23>
       <Position24>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="343" Column="12" TopLine="319"/>
+        <Caret Line="46" Column="14" TopLine="27"/>
       </Position24>
       <Position25>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="42" Column="25" TopLine="23"/>
+        <Caret Line="444" Column="3" TopLine="437"/>
       </Position25>
       <Position26>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="72" Column="15" TopLine="42"/>
+        <Caret Line="46" Column="64" TopLine="27"/>
       </Position26>
       <Position27>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="266" Column="26" TopLine="248"/>
+        <Caret Line="128" Column="25" TopLine="113"/>
       </Position27>
       <Position28>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="271" Column="15" TopLine="248"/>
+        <Caret Line="129" Column="103" TopLine="113"/>
       </Position28>
       <Position29>
         <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="318" Column="13" TopLine="288"/>
+        <Caret Line="130" Column="13" TopLine="113"/>
       </Position29>
-      <Position30>
-        <Filename Value="cmdFileUtility.lpr"/>
-        <Caret Line="321" Column="37" TopLine="306"/>
-      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

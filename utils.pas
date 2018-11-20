@@ -5,8 +5,8 @@ unit Utils;
 interface
 
 uses
-  Classes, SysUtils
-  , codepageconvertor;
+  Classes, SysUtils,
+  codepageconvertor;
 
 function ExtractFileNameEx( fName: string ): string;
 function GetSizeAllFiles( var x: array of string ): longint;
@@ -105,6 +105,8 @@ begin
   inpText := StringReplace(inpText, '\r', #13, [rfReplaceAll]);
   inpText := StringReplace(inpText, '\n', #10, [rfReplaceAll]);
   inpText := StringReplace(inpText, '\t', #9, [rfReplaceAll]);
+  inpText := StringReplace(inpText, '\0', #0, [rfReplaceAll]);
+  { TODO -oNazir : Unicode support: inpText := StringReplace(inpText, '\x...', #..., [rfReplaceAll]) }
   Result := inpText;
 end;
 

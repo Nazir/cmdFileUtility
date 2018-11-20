@@ -7,14 +7,14 @@ program cmdFileUtility;
 {  Project cmdFileUtility                                                      }
 {  Проект cmdFileUtility (Консольная утилита работы с файлами)                 }
 {                                                                              }
-{  Copyright: Nazir © 2002-2016                                                }
+{  Copyright: Nazir © 2002-2018                                                }
 {  Development: Nazir K. Khusnutdinov (aka Naziron or Wild Pointer)            }
-{  Разработчик: Хуснутдинов Назир Каримович  (Naziron or Wild Pointer)        }
+{  Разработчик: Хуснутдинов Назир Каримович  (Naziron or Wild Pointer)         }
 {  Email: naziron@gmail.com                                                    }
 {  Git: https://github.com/Nazir                                               }
 {                                                                              }
 {  Create: 02.08.2012                                                          }
-{  Modify: 09.08.2012, 08.06.2014, 02.03.2016                                  }
+{  Modify: 09.08.2012, 08.06.2014, 02.03.2016, 20.11.2018                      }
 {                                                                              }
 {******************************************************************************}
 
@@ -312,7 +312,6 @@ begin
   WriteLn('');
 //  WriteLn('Example:');
 //  WriteLn(ExtractFileName(ExeName), ' -c merge -s FilesList.txt -o RESULT\');
-//
 
   WriteLn();
   WriteAbout;
@@ -325,12 +324,12 @@ begin
   WriteLn('Help: ', ExtractFileName(ExeName), ' -h');
   WriteLn();
   WriteLn('About:');
-  WriteLn('cmdFileUtility v0.2 alpha (02.03.2016)');
-  WriteLn('Copyright: Nazir (c) 2002-2016');
+  WriteLn('cmdFileUtility v0.3 alpha (20.11.2018)');
+  WriteLn('Copyright: Nazir (c) 2002-2018');
   WriteLn('Programming:');
   WriteLn('Nazir K. Khusnutdinov aka Wild Pointer');
-  WriteLn('Email: Nazir@ovvio.pro');
-  WriteLn('WEB: http://Nazir.ovvio.pro');
+  WriteLn('Email: Nazir@Nazir.pro');
+  WriteLn('WEB: http://Nazir.pro');
   WriteLn('Email: Naziron@gmail.com');
   WriteLn('Git: https://github.com/Nazir');
 end;
@@ -351,7 +350,7 @@ function TcmdFileUtility.MergeFileStream(inFiles: TStringList; outFileName: stri
 var
   inStream: TFileStream;  // Входной файловый поток
   outStream: TFileStream; // Выходной файловый поток
-//  outFileName: string;    // Шаблон выходного имени файла
+  //outFileName: string;    // Шаблон выходного имени файла
   recFirstFile: Boolean;  // Признак записи первого файла
   i: Integer;             // Цикловая переменная
 
@@ -423,8 +422,11 @@ begin
     sFind := AFindList.Strings[iCounter];
     for iCounter2 := 0 to slInput.Count - 1 do
     begin
-      if Pos(sFind, slInput.Strings[iCounter2]) > 0 then
-       slOutput.Append(slInput.Strings[iCounter2]);
+       if Pos('#', sFind) <> 1 then
+       begin
+         if Pos(sFind, slInput.Strings[iCounter2]) > 0 then
+           slOutput.Append(slInput.Strings[iCounter2]);
+       end;
     end;
   end;
 
@@ -442,11 +444,9 @@ var
   iCounter: Integer;
   sFind, sReplace : String;
 begin
-
-
   Result := False;
   if not FileExists(inpFileName) then
-   Exit;
+    Exit;
 
   slInput := TStringList.Create;
   slInput.LoadFromFile(inpFileName);
@@ -456,13 +456,16 @@ begin
   for iCounter := 0 to AReplaceList.Count - 1 do
   begin
     sFind := AReplaceList.Strings[iCounter];
-    sFind := LeftStr(sFind, Pos('=', sFind) - 1);
-    sFind := ReplaceExp(sFind);
-    sReplace := AReplaceList.Strings[iCounter];
-    sReplace := Copy(sReplace, Pos('=', sReplace) + 1, Length(sReplace));
-    sReplace := ReplaceExp(sReplace);
-    //sReplace := TrimRight(sReplace);
-    slOutput.Text := StringReplace(slOutput.Text, sFind, sReplace, [rfIgnoreCase, rfReplaceAll]);
+    if Pos('#', sFind) <> 1 then
+    begin
+      sFind := LeftStr(sFind, Pos('=', sFind) - 1);
+      sFind := ReplaceExp(sFind);
+      sReplace := AReplaceList.Strings[iCounter];
+      sReplace := Copy(sReplace, Pos('=', sReplace) + 1, Length(sReplace));
+      sReplace := ReplaceExp(sReplace);
+      //sReplace := TrimRight(sReplace);
+      slOutput.Text := StringReplace(slOutput.Text, sFind, sReplace, [rfIgnoreCase, rfReplaceAll]);
+    end;
   end;
 
   slInput.Free;
