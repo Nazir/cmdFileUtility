@@ -5,16 +5,16 @@ program cmdFileUtility;
 {******************************************************************************}
 {                                                                              }
 {  Project cmdFileUtility                                                      }
-{  Проект cmdFileUtility (Консольная утилита работы с файлами)                 }
+{  Проект cmdFileUtility (Command-line utility to work with files)             }
 {                                                                              }
-{  Copyright: Nazir © 2002-2018                                                }
+{  Copyright: Nazir © 2002-2019                                                }
 {  Development: Nazir K. Khusnutdinov (aka Naziron or Wild Pointer)            }
 {  Разработчик: Хуснутдинов Назир Каримович  (Naziron or Wild Pointer)         }
 {  Email: naziron@gmail.com                                                    }
 {  Git: https://github.com/Nazir                                               }
 {                                                                              }
 {  Create: 02.08.2012                                                          }
-{  Modify: 09.08.2012, 08.06.2014, 02.03.2016, 20.11.2018                      }
+{  Modify: 09.08.2012, 08.06.2014, 02.03.2016, 20.11.2018, 06.12.2019          }
 {                                                                              }
 {******************************************************************************}
 
@@ -207,24 +207,27 @@ begin
   if bSettingsFileList then
   begin
     slSettings := TStringList.Create;
-
-    slTemp := TStringList.Create;
-    slTemp.LoadFromFile(optSettings);
-
-    WriteLine('Settings:');
-    for iCounter := 0 to slTemp.Count - 1 do
-    begin
-      sTemp := slTemp.Strings[iCounter];
-      if (sTemp <> EmptyStr) and (LeftStr(sTemp, 1) <> '#') then
-      begin
-        WriteLine(IntToStr(iCounter + 1) + '. "' + sTemp + '"');
-        WriteLine();
-        slSettings.Append(sTemp);
+    try
+      slTemp := TStringList.Create;
+      try
+        slTemp.LoadFromFile(optSettings);
+      except
+         WriteError('Error load from file "' + optSettings + '"!');
       end;
+      WriteLine('Settings:');
+      for iCounter := 0 to slTemp.Count - 1 do
+      begin
+        sTemp := slTemp.Strings[iCounter];
+        if (sTemp <> EmptyStr) and (LeftStr(sTemp, 1) <> '#') then
+        begin
+          WriteLine(IntToStr(iCounter + 1) + '. "' + sTemp + '"');
+          WriteLine();
+          slSettings.Append(sTemp);
+        end;
+      end;
+    finally
+      slTemp.Free;
     end;
-
-    slTemp.Free;
-
     if slSettings.Count > 0 then
     begin
       WriteLn();
@@ -295,7 +298,7 @@ end;
 
 procedure TcmdFileUtility.WriteHelp;
 begin
-  { add your help code here }
+  //add your help code here
   WriteLn('Usage: ', ExtractFileName(ExeName), ' [Option] [Option, [Option]...]');
   WriteLn('  Option:');
   WriteLn('    -h or --help     - Help (show this)');
@@ -308,10 +311,10 @@ begin
   WriteLn('    1. merge - Merge files in list. Use option -i for file containing a list.');
   WriteLn('    2. FindLines - Find lines in input file and copy them in output file. Use option -s for file containing a list find string.');
   WriteLn('    3. replace - Find and replace strings in input file. Use option -s for file containing a list find string=replace string.');
-  WriteLn('    4. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing  cpALT, cpISO, cpKOI, cpMAC, cpWIN.');
+  WriteLn('    4. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing  cpALT, cpISO, cpKOI, cpMAC, cpWIN. As well as encoding UTF-8 convert to UTF-8 with BOM or vice versa.');
   WriteLn('');
-//  WriteLn('Example:');
-//  WriteLn(ExtractFileName(ExeName), ' -c merge -s FilesList.txt -o RESULT\');
+  //WriteLn('Example:');
+  //WriteLn(ExtractFileName(ExeName), ' -c merge -s FilesList.txt -o RESULT\');
 
   WriteLn();
   WriteAbout;
@@ -324,8 +327,8 @@ begin
   WriteLn('Help: ', ExtractFileName(ExeName), ' -h');
   WriteLn();
   WriteLn('About:');
-  WriteLn('cmdFileUtility v0.3 alpha (20.11.2018)');
-  WriteLn('Copyright: Nazir (c) 2002-2018');
+  WriteLn('cmdFileUtility v0.4 alpha (06.02.2019)');
+  WriteLn('Copyright: Nazir (c) 2002-2019');
   WriteLn('Programming:');
   WriteLn('Nazir K. Khusnutdinov aka Wild Pointer');
   WriteLn('Email: Nazir@Nazir.pro');

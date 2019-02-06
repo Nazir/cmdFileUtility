@@ -1,0 +1,2 @@
+..\cmdFileUtility.exe -c CodePageConvertor -i cmdFileUtility.CodePageConvertor.Input.UTF8.txt -o RESULT\cmdFileUtility.CodePageConvertor.UTF8.Result.txt -s cmdFileUtility.CodePageConvertor.Settings.UTF8.txt
+pause
