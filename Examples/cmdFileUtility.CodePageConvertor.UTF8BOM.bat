@@ -1,0 +1,2 @@
+..\cmdFileUtility.exe -c CodePageConvertor -i cmdFileUtility.CodePageConvertor.Input.UTF8BOM.txt -o RESULT\cmdFileUtility.CodePageConvertor.UTF8BOM.Result.txt -s cmdFileUtility.CodePageConvertor.Settings.UTF8BOM.txt
+pause
