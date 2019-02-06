@@ -15,8 +15,9 @@ Features:
 3. Find and replace lines in text.
 4. Conversion of the code page of the file.
 
-For convenience, you can create a batch file (*.bat).
-Examples are located in the `Examples ' folder.
+> For convenience, you can create a batch file (*.bat).
+> 
+> Examples are located in the `Examples` folder.
 
 Usage
 -----
