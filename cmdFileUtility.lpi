@@ -22,11 +22,11 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2019"/>
-      <MinorVersionNr Value="2"/>
-      <RevisionNr Value="6"/>
+      <MinorVersionNr Value="9"/>
+      <RevisionNr Value="9"/>
       <BuildNr Value="1"/>
       <Language Value="0419"/>
-      <StringTable Comments="http://Nazir.pro" InternalName="cmdFileUtility.exe" LegalCopyright="Nazir © 2002-2019" OriginalFilename="cmdFileUtility.exe" ProductName="cmdFileUtility" ProductVersion="0.4 alpha"/>
+      <StringTable Comments="http://Nazir.pro" InternalName="cmdFileUtility.exe" LegalCopyright="Nazir © 2002-2019" OriginalFilename="cmdFileUtility.exe" ProductName="cmdFileUtility" ProductVersion="0.5.0 alpha"/>
     </VersionInfo>
     <BuildModes Count="1" Active="Default">
       <Item1 Name="Default" Default="True"/>
@@ -35,9 +35,6 @@
       <Version Value="2"/>
     </PublishOptions>
     <RunParams>
-      <local>
-        <CommandLineParams Value="-c CodePageConvertor -i Examples\cmdFileUtility.CodePageConvertor.Input.UTF8.txt -o Examples\RESULT\cmdFileUtility.CodePageConvertor.UTF8.Result.txt -s Examples\cmdFileUtility.CodePageConvertor.Settings.UTF8.txt"/>
-      </local>
       <FormatVersion Value="2"/>
       <Modes Count="1">
         <Mode0 Name="default">
@@ -52,13 +49,14 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="28">
+    <Units Count="29">
       <Unit0>
         <Filename Value="cmdFileUtility.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="76" Y="23"/>
-        <UsageCount Value="171"/>
+        <TopLine Value="296"/>
+        <CursorPos Y="314"/>
+        <UsageCount Value="176"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -66,7 +64,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="3"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="176"/>
         <DefaultSyntaxHighlighter Value="Bat"/>
       </Unit1>
       <Unit2>
@@ -74,7 +72,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="2"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="176"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit2>
       <Unit3>
@@ -82,7 +80,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="23"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="173"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit3>
       <Unit4>
@@ -139,8 +137,7 @@
         <Filename Value="codepageconvertor.pas"/>
         <UnitName Value="CodePageConvertor"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="40"/>
-        <CursorPos X="57" Y="18"/>
+        <CursorPos X="14"/>
         <UsageCount Value="10"/>
       </Unit12>
       <Unit13>
@@ -163,13 +160,15 @@
         <UnitName Value="UtilsUnit"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="10"/>
-        <UsageCount Value="80"/>
+        <UsageCount Value="85"/>
       </Unit15>
       <Unit16>
         <Filename Value="utils.pas"/>
         <UnitName Value="Utils"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="124"/>
+        <CursorPos X="41" Y="131"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
       </Unit16>
       <Unit17>
@@ -216,19 +215,21 @@
       </Unit22>
       <Unit23>
         <Filename Value="ReadMe.md"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="40" Y="7"/>
-        <UsageCount Value="35"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="22"/>
+        <CursorPos X="222" Y="38"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit23>
       <Unit24>
         <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
         <UnitName Value="LConvEncoding"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="107"/>
-        <CursorPos X="24" Y="135"/>
-        <UsageCount Value="10"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="1348"/>
+        <CursorPos X="49" Y="2121"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit24>
       <Unit25>
         <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\fpc\3.0.4\source\rtl\inc\ustringh.inc"/>
@@ -253,8 +254,15 @@
         <CursorPos X="91" Y="154"/>
         <UsageCount Value="10"/>
       </Unit27>
+      <Unit28>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1150"/>
+        <CursorPos X="3" Y="603"/>
+        <UsageCount Value="10"/>
+      </Unit28>
     </Units>
-    <JumpHistory Count="2" HistoryIndex="1">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="ReadMe.md"/>
         <Caret Line="19"/>
@@ -263,6 +271,94 @@
         <Filename Value="cmdFileUtility.lpr"/>
         <Caret Line="23" Column="76"/>
       </Position2>
+      <Position3>
+        <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="138" Column="35" TopLine="122"/>
+      </Position3>
+      <Position4>
+        <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="139" Column="143" TopLine="122"/>
+      </Position4>
+      <Position5>
+        <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="141" Column="23" TopLine="122"/>
+      </Position5>
+      <Position6>
+        <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="262" Column="41" TopLine="234"/>
+      </Position6>
+      <Position7>
+        <Filename Value="utils.pas"/>
+        <Caret Line="14" Column="10"/>
+      </Position7>
+      <Position8>
+        <Filename Value="utils.pas"/>
+        <Caret Line="72" Column="22" TopLine="55"/>
+      </Position8>
+      <Position9>
+        <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="262" Column="41" TopLine="234"/>
+      </Position9>
+      <Position10>
+        <Filename Value="utils.pas"/>
+        <Caret Line="14" Column="10"/>
+      </Position10>
+      <Position11>
+        <Filename Value="utils.pas"/>
+        <Caret Line="14" Column="10"/>
+      </Position11>
+      <Position12>
+        <Filename Value="utils.pas"/>
+        <Caret Line="126" Column="23" TopLine="109"/>
+      </Position12>
+      <Position13>
+        <Filename Value="utils.pas"/>
+        <Caret Line="144" Column="31" TopLine="118"/>
+      </Position13>
+      <Position14>
+        <Filename Value="cmdFileUtility.lpr"/>
+        <Caret Line="331" Column="37" TopLine="305"/>
+      </Position14>
+      <Position15>
+        <Filename Value="utils.pas"/>
+        <Caret Line="131" Column="41" TopLine="119"/>
+      </Position15>
+      <Position16>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="115" Column="15" TopLine="107"/>
+      </Position16>
+      <Position17>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="5261" Column="3" TopLine="5259"/>
+      </Position17>
+      <Position18>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="1094" Column="3" TopLine="1023"/>
+      </Position18>
+      <Position19>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="116" Column="18" TopLine="106"/>
+      </Position19>
+      <Position20>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="5266" Column="19" TopLine="5264"/>
+      </Position20>
+      <Position21>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="131" Column="10" TopLine="114"/>
+      </Position21>
+      <Position22>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="5348" Column="3" TopLine="5339"/>
+      </Position22>
+      <Position23>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="105" Column="19" TopLine="88"/>
+      </Position23>
+      <Position24>
+        <Filename Value="C:\Users\KhusnutdinovNK\Documents\pf\Lazarus\components\lazutils\lconvencoding.pas"/>
+        <Caret Line="131" Column="73" TopLine="103"/>
+      </Position24>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -283,6 +379,22 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
+    <BreakPoints Count="2">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="cmdFileUtility.lpr"/>
+        <Line Value="64"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="utils.pas"/>
+        <Line Value="66"/>
+      </Item2>
+    </BreakPoints>
     <Watches Count="2">
       <Item1>
         <Expression Value="slOutput.Text"/>
