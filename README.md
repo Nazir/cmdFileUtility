@@ -1,6 +1,6 @@
 ![nazir.pro](http://nazir.pro/img/logo.png)
 
-# cmdFileUtility v0.4 alpha #
+# cmdFileUtility v0.5.0 alpha #
 
 About
 -----
