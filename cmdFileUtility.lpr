@@ -14,7 +14,7 @@ program cmdFileUtility;
 {  Git: https://github.com/Nazir                                               }
 {                                                                              }
 {  Create: 02.08.2012                                                          }
-{  Modify: 09.08.2012, 08.06.2014, 02.03.2016, 20.11.2018, 06.12.2019          }
+{  Modify: 09.08.2012, 08.06.2014, 02.03.2016, 20.11.2018, 06.12.2018          }
 {                                                                              }
 {******************************************************************************}
 
@@ -311,7 +311,7 @@ begin
   WriteLn('    1. merge - Merge files in list. Use option -i for file containing a list.');
   WriteLn('    2. FindLines - Find lines in input file and copy them in output file. Use option -s for file containing a list find string.');
   WriteLn('    3. replace - Find and replace strings in input file. Use option -s for file containing a list find string=replace string.');
-  WriteLn('    4. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing  cpALT, cpISO, cpKOI, cpMAC, cpWIN. As well as encoding UTF-8 convert to UTF-8 with BOM or vice versa.');
+  WriteLn('    4. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing  cpALT, cpISO, cpKOI, cpMAC, cpWIN. As well as encoding UTF-8 convert to UTF-8 with BOM or vice versa. Convert "CP1251"<->"UTF-8"');
   WriteLn('');
   //WriteLn('Example:');
   //WriteLn(ExtractFileName(ExeName), ' -c merge -s FilesList.txt -o RESULT\');
@@ -327,7 +327,7 @@ begin
   WriteLn('Help: ', ExtractFileName(ExeName), ' -h');
   WriteLn();
   WriteLn('About:');
-  WriteLn('cmdFileUtility v0.4 alpha (06.02.2019)');
+  WriteLn('cmdFileUtility v0.5.0 alpha (09.09.2019)');
   WriteLn('Copyright: Nazir (c) 2002-2019');
   WriteLn('Programming:');
   WriteLn('Nazir K. Khusnutdinov aka Wild Pointer');

@@ -124,6 +124,32 @@ begin
      end;
   end;
 
+  if ACodePage.Strings[0] = 'CP1251' then
+  begin
+     if ACodePage.Strings[1] = 'UTF8' then
+     begin
+        slOutput.Append(CP1251ToUTF8(slInput.Text));   // cyrillic
+        slInput.Free;
+        slOutput.SaveToFile(outFileName);
+        slOutput.Free;
+        Result := True;
+        Exit;
+     end;
+  end;
+
+  if ACodePage.Strings[0] = 'UTF8' then
+  begin
+     if ACodePage.Strings[1] = 'CP1251' then
+     begin
+        slOutput.Append(UTF8ToCP1251(slInput.Text));   // cyrillic
+        slInput.Free;
+        slOutput.SaveToFile(outFileName);
+        slOutput.Free;
+        Result := True;
+        Exit;
+     end;
+  end;
+
   //  cpALT,cpISO,cpKOI,cpMAC,cpWIN
   Convertor := TCodePageConvertor.Create(nil);
   if ACodePage.Strings[0] = 'cpALT' then

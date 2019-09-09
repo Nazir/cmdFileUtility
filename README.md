@@ -35,7 +35,7 @@ Usage
     1. merge - Merge files in list. Use option -i for file containing a list.
     2. FindLines - Find lines in input file and copy them in output file. Use option -s for file containing a list find string.
     3. replace.
-    4. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing  cpALT, cpISO, cpKOI, cpMAC, cpWIN. As well as encoding UTF-8 convert to UTF-8 with BOM or vice versa.
+    4. CodePageConvertor - Convert codepage input file and save them as output file. Use option -s for file containing cpALT, cpISO, cpKOI, cpMAC, cpWIN.  As well as encoding UTF-8 convert to UTF-8 with BOM or vice versa. Convert "CP1251"<->"UTF-8".
 ```
 
 Repo owner
